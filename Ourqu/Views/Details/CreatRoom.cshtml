@@ -1,0 +1,355 @@
+﻿@model IEnumerable<OurQu.ViewModel.ViewPage.CityInfoViewModel>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="description" content="ourqu是一个定位于社交的网站，是一个通过线上活动组织线下进行活动的社交网站。ourqu网站包含建立活动房间，宣传活动内容，会员充值等板块，是我们年轻人希望的新的社交类网站，用最好的内容最齐全的功能来服务于年轻人交友是我们ourqu网站的宗旨
+" />
+    <meta name="keywords" content="金牌会员,交友,吃饭,看电影,美女,本地,020	   
+" />
+    <meta name="author" content="" />
+    <title>齐去网_创建房间</title>
+    <link rel="stylesheet" href="@Url.Content("~/images/style.css")" />
+    <link href="@Url.Content("~/Scripts/LigerUI/ligerUI/skins/Aqua/css/ligerui-dialog.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Scripts/LigerUI/ligerUI/skins/Gray/css/dialog.css")" rel="stylesheet" />
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.8.3.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/LigerUI/ligerUI/js/core/base.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/XJN.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/LigerUI/ligerUI/js/plugins/ligerDialog.js")"></script>
+    @* Datepicker Start *@
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"> </script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-ui-timepicker-addon.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-ui-timepicker-zh-CN.js")"></script>
+    @* Datepicker End *@
+    <script src="~/Scripts/jquery.form.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            //初始化
+            $("#Step2").hide();
+            $('#basic_example_1').datetimepicker();
+            $('#basic_example_2').datetimepicker();
+
+        });
+        function NextStep(values) {
+            $("input[name='Type']").val(values);
+            $("#RoomType").removeClass("contentFounderTitleBtn1").addClass("contentFounderTitleBtn2");
+            $("#RoomInfo").removeClass("contentFounderTitleBtn3").addClass("contentFounderTitleBtn4");
+            $("#Step1").hide();
+            $("#Step2").show(300);
+        }
+    </script>
+</head>
+<body>
+    <div id="globalNavigation">
+        <ul class="globalNavigationList">
+            @helper LoginStatus()
+{
+    if (OurQu.Helper.WebHelper.CookieHelper.GetCookieValue("Username").Length > 0 || OurQu.Helper.WebHelper.SessionHelper.Get("Username") != null)
+    {
+                @Html.Raw("<li><a href='login.html'>提醒</a></li><li><a href='register.html'><span style='color:#FF0000'>" + OurQu.Helper.WebHelper.SessionHelper.Get("Username") + "</span></a></li><li><a href='" + Url.Content("~/Account/QuitLogin") + "'  onclick='return LoginQuit();'>退出登录</a></li>")
+       
+
+    }
+    else
+    {
+                @Html.Raw("<li><a href='" + Url.Content("~/Account/") + "'>登陆</a></li><li><a  href='" + Url.Content("~/Account/Register") + "' >注册</a></li>")
+               
+    }
+            }
+            @LoginStatus()
+
+        </ul>
+    </div>
+    <div id="navigation">
+        <div class="navigationContainer">
+            <div class="logo">
+                <a href="/">
+                    <img src="/images/logo.jpg" alt="logo" />
+                </a>
+            </div>
+            <div class="chooseWhere">
+                <a id="chooseWhereBtn">常州<img style="position: relative; top: -2px; left: 2px;" src="/images/icon-5.jpg" alt="" /></a>
+
+            </div>
+            <div class="navigationSearch">
+                <input class="inputBox" type="text" /><input class="submitBox" type="submit" value="" />
+            </div>
+        </div>
+    </div>
+    <div id="content">
+
+        <div class="contentTitle">
+        </div>
+        <div class="contentFounderTitle">
+            <a href="#" id="RoomType" class="contentFounderTitleBtn1"><span></span>选择房间类别</a>
+            <div class="contentFounderTitleD"></div>
+            <a href="#" id="RoomInfo" class="contentFounderTitleBtn3"><span></span>填写房间信息</a>
+        </div>
+        <div class="clear"></div>
+
+        <form action="post" id="mainForm" enctype="multipart/form-data">
+            <div class="contentFounderKind" id="Step1">
+                <ul class="contentFounderKindList">
+                    @foreach (var item in Model)
+                    {
+                        <li><a href="#" onclick="NextStep('@(item.Content)')">@item.Content</a></li>
+                    }
+
+                    @* <li><a href="#">酒吧</a></li>
+                <li><a href="#">吃饭</a></li>
+                <li><a href="#">K歌</a></li>
+                <li><a href="#">茶社</a></li>
+                <li><a href="#">电影</a></li>
+                <li><a href="#">园游会</a></li>
+                <li><a href="#">聚会</a></li>
+                <li><a href="#">购物</a></li>*@
+                </ul>
+            </div>
+
+            <div style="margin: 20px 0 0 0;" class="contentFounderInfo" id="Step2">
+
+                <div class="infoLine1">
+                    <div class="infoLine1Left">
+                        <label>房间名称</label>
+                    </div>
+                    <div class="infoLine1Right">
+                        <input type="text" name="RoomName" value="" />
+                    </div>
+                </div>
+                <div class="infoLine1">
+                    <div class="infoLine1Left">
+                        <label>类别</label>
+                    </div>
+                    <div class="infoLine1Right">
+                        <input type="text" name="Type" readonly="readonly" value="" />
+                    </div>
+                </div>
+                <div class="infoLine2">
+                    <div class="infoLine2Left">
+                        <label>地区</label>
+                    </div>
+                    <div class="infoLine2Right">
+                        <select name="Province" id="Province" class="pro" onchange="GetChildCity(this.value)">
+                            <option value="0" id="kind1">选择省份</option>
+                            @using (OurQu.BLL.CityService Service = new OurQu.BLL.CityService())
+                            {
+                                foreach (var item in Service.GetCities().Where(x => x.ParentID.Equals(0)))
+                                {
+                                <option value="@(item.ID)">@(item.CityName)</option>
+                                }
+                            }
+                        </select>
+                        <select name="City" id="LoadChildCity" class="area" onchange="GetChildCityArea(this.value)">
+                            <option value='0'>==请选择==</option>
+                        </select>
+                        <select name="Area" id="CityArea" class="area">
+                            <option value='0'>==请选择==</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="infoLine3">
+                    <div class="infoLine3Left">
+                        <label>时间</label>
+
+                    </div>
+                    <div class="infoLine3Right">
+
+                        <span id="MM1">
+                            <input type="text" name="StartDate" id="basic_example_1" value="开始时间" onfocus="if (value =='开始时间'){value =''}" /></span>
+                        <span id="DD1">
+                            <input type="text" name="EndDate" id="basic_example_2" value="结束时间" onfocus="if (value =='结束时间'){value =''}" /></span>
+
+                    </div>
+                    @* <div class="infoLine3Right">
+                        <span id="YYYY1">
+                            <select name="YYYY" id="YYYY" class="year" onchange="YYYYMM(this.value)">
+                                <option selected value="" id="kind1">选择年份</option>
+
+                            </select>年</span>
+                        <span id="MM1">
+                            <select name="MM" id="MM" class="month" onchange="YYYYMM(this.value)">
+                                <option selected value="" id="kind1">选择月份</option>
+
+                            </select>月</span>
+                        <span id="DD1">
+                            <select name="DD" id="DD" class="day">
+                                <option selected value="分类" id="kind1">选择日期</option>
+
+                            </select>日</span>
+                     
+                    </div>*@
+                    <div class="infoLine3">
+                        <div class="infoLine3Left">
+                            <label>房间照片</label>
+
+                        </div>
+                        <div class="infoLine3Right">
+                            <input type="file" name="PicFile" id="PicFile" />
+                        </div>
+                    </div>
+                    <div class="infoLine4">
+                        <div class="infoLine4Left">
+                            <label>活动内容</label>
+                        </div>
+                        <div class="infoLine4Right">
+                            <textarea name="Content" id="Content" cols="40" rows="8"></textarea>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="infoLine5">
+                        <div class="infoLine5Left">
+                        </div>
+                        <div class="infoLine5Right">
+                            <label>
+                                <input type="checkbox" />我已经阅读并同意ourqu服务条款</label>
+                        </div>
+                    </div>
+                    <div class="infoLine6">
+                        <div class="infoLine6Left">
+                        </div>
+                        <div class="infoLine6Right">
+                            <input class="loginBtn" type="button" onclick="return AddRoom();" value="完成创建" />
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+
+                </div>
+        </form>
+
+
+
+        <div class="clear"></div>
+    </div>
+    <div id="footer">
+        <div class="footerList">
+            <li><a href="#">关于我们</a></li>
+            <li><a href="#">联系我们</a></li>
+            <li><a href="#">投资广告</a></li>
+            <li><a href="#">RSS订阅</a></li>
+
+        </div>
+        <div class="clear"></div>
+        <div class="footerCopyright">
+            <p>&copy;2012-2013&nbsp;ourqu.com,all right reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    function GetChildCity(id) {
+        var root = '@(Url.Content("~/Details/"))';
+        if (id != "") {
+            $("#LoadChildCity").empty();
+            $.ajax({
+                url: root + 'GetChildCity',
+                data: { ID: id },
+                success: function (Data) {
+                    $("#LoadChildCity").append("<option value='0'>==请选择==</option>");
+                    $(Data).each(function (i, menu) {
+                        $("#LoadChildCity").append("<option value='" + menu.ID + "'>" + menu.CityName + "</option>");
+                    });
+                }
+            })
+        }
+    }
+    function GetChildCityArea(id) {
+        var root = '@(Url.Content("~/Details/"))';
+        if (id != "") {
+            $("#CityArea").empty();
+            $.ajax({
+                url: root + 'GetChildCityArea',
+                data: { ID: id },
+                success: function (Data) {
+                    $("#CityArea").append("<option value='0'>==请选择==</option>");
+                    $(Data).each(function (i, menu) {
+                        $("#CityArea").append("<option value='" + menu.CityName + "'>" + menu.CityName + "</option>");
+                    });
+                }
+            })
+        }
+    }
+    function AddRoom() {
+        var root = '@(Url.Content("~/Details/"))';
+        var RName = $("input[name='RoomName']");
+        var Province = $("#Province");
+        var City = $("#LoadChildCity");
+        var CityArea = $("#CityArea");
+        var StartDate = $("#basic_example_1");
+        var EndDate = $("#basic_example_2");
+        var Day = $("#DD");
+        var Content = $("#Content");
+        if (RName.val() == "") {
+            xjn.showError('房间名称不能为空！');
+            return false;
+        }
+        if (Province.val() == "0") {
+            xjn.showError('请选择省份！');
+            return false;
+        }
+        if (City.val() == "0") {
+            xjn.showError('请选择城市！');
+            return false;
+        }
+        if (CityArea.val() == "0") {
+            xjn.showError('请选择区！');
+            return false;
+        }
+        if (StartDate.val() == "开始时间" || EndDate.val() == "结束时间") {
+            xjn.showError('请选择开始时间或结束时间！');
+            return false;
+        }
+
+        if (Content.val() == "") {
+            xjn.showError('请填写活动内容！');
+            return false;
+        }
+
+        //xjn.ajax({
+        //    url: root + 'AddRoom',
+        //    data: {
+        //        RoomName: $("input[name='RoomName']").val(),
+        //        Type: $("input[name='Type']").val(),
+        //        City: $("#LoadChildCity").val(),
+        //        year: $("#year").val(),
+        //        month: $("#month").val(),
+        //        day: $("#day").val(),
+        //        Content: $("#Content").val(),
+        //        Area: $("#CityArea").val(),
+        //        File:$("#PicFile")
+
+        //    },
+        //    loading: "正在提交中...",
+        //    success: function (Data, Message, IsError) {
+        //        xjn.showSuccess(Message + " 3秒后自动跳转！");
+        //        setInterval(function () {
+        //            window.location.href = "/Home/Index";
+        //        }, 3000);
+        //    },
+        //    error: function (msg) {
+        //        xjn.showError(msg);
+        //        return false;
+        //    }
+        //});
+        xjn.AjaxForm({
+            formname: "mainForm",
+            url: root + 'AddRoom',
+            loading: "正在提交中...",
+            success: function (Data, Message, IsError) {
+                xjn.showSuccess(Message + " 3秒后自动跳转！");
+                setInterval(function () {
+                    window.location.href = "/Home/Index";
+                }, 3000);
+            },
+            error: function (msg) {
+                xjn.showError(msg);
+                return false;
+            }
+        });
+    }
+
+</script>
