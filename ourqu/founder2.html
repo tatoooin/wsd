@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<meta name="author" content="" />
+		<title>ourqu-Founder2</title>
+		<link rel="stylesheet" href="style/style.css" />
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+
+		<script type="text/JavaScript" src="javascript/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"> </script>
+		<script type="text/javascript" src="javascript/jquery-ui-timepicker-addon.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$('#basic_example_1').datetimepicker();
+				$('#basic_example_2').datetimepicker();
+
+			});
+		</script>
+
+	</head>
+	<body>
+		<div id="globalNavigation">
+			<ul class="globalNavigationList">
+				<li><a href="login.html">提醒</a></li>
+				<li><a href="register.html">yunbo的账号</a></li>
+			</ul>
+		</div>
+		<div id="navigation">
+			<div class="navigationContainer">
+				<div class="logo">
+					<a href="index.html">
+						<img src="images/logo.jpg" alt="logo" />
+					</a>
+				</div>
+				<div class="chooseWhere">
+					<a id="chooseWhereBtn">常州<img style="position: relative;top: -2px;left:2px;" src="images/icon-5.jpg" alt="" /></a>
+					
+				</div>
+				<div class="navigationSearch">
+					<input class="inputBox" type="text" /><input class="submitBox" type="submit" value="" />
+				</div>
+			</div>
+		</div>
+		<div id="content">
+			<div class="contentTitle">
+				创建房间
+			</div>
+			<div class="contentFounderTitle">
+				<a href="#" class="contentFounderTitleBtn2"><span></span>选择房间类别</a>
+				<div class="contentFounderTitleD"></div>
+				<a href="#" class="contentFounderTitleBtn4"><span></span>填写房间信息</a>
+			</div>
+			<div class="clear"></div>
+			<div style="margin: 20px 0 0 0;" class="contentFounderInfo">
+				<form action="post" name="form1">
+					<div class="infoLine1">
+						<div class="infoLine1Left">
+							<label>房间名称</label>
+						</div>
+						<div class="infoLine1Right">
+							<input type="text" value="请输入您要创建的房间名称" onfocus="if (value =='请输入您要创建的房间名称'){value =''}" onblur="if (value ==''){value='请输入您要创建的房间名称'}" />
+						</div>
+					</div>
+					<div class="infoLine2">
+						<div class="infoLine2Left">
+							<label>地区</label>
+						</div>
+						<div class="infoLine2Right">
+							<select name="kind0" class="pro"  onChange="getCity()">
+						  		<option selected value="分类" id="kind1">选择省份</option>
+						  		<option value="直辖市" id="kind0">直辖市</option>
+						  		<option value="江苏" id="kind1">江苏</option>
+						  		<option value="安徽" id="kind2">安徽</option>
+						  		<option value="浙江" id="kind3">浙江</option>
+							</select>
+							<select name="kind2" class="area">
+						  		<option selected value="分类" id="kind1">选择地区</option>
+						 		
+							</select>
+						</div>
+					</div>
+					<div class="infoLine3" style="position: relative;">
+						<div class="infoLine3Left">
+							<label>时间</label>
+							
+						</div>
+						<div class="infoLine3Right">
+							
+							<span id="MM1"><input type="text" id="basic_example_1" value="开始时间" /></span>
+							<span id="DD1"><input type="text"  id="basic_example_2" value="结束时间"/></span>
+							
+						</div>
+					</div>
+					<div class="infoLine3">
+						<div class="infoLine3Left">
+							<label>房间照片</label>
+							
+						</div>
+						<div class="infoLine3Right">
+							<input type="file" />
+						</div>
+					</div>
+					<div class="infoLine4">
+						<div class="infoLine4Left">
+							<label>活动内容</label>
+						</div>
+						<div class="infoLine4Right">
+							<textarea name="" id="" cols="40" rows="8"></textarea>
+						</div>
+					</div>
+					<div class="clear"></div>
+					<div class="infoLine5">
+						<div class="infoLine5Left">
+							
+						</div>
+						<div class="infoLine5Right">
+							<label><input type="checkbox" />我已经阅读并同意ourqu服务条款</label>
+						</div>
+					</div>
+					<div class="infoLine6">
+						<div class="infoLine6Left">
+							
+						</div>
+						<div class="infoLine6Right">
+							<input class="loginBtn" type="submit" value="完成创建" />
+						</div>
+					</div>
+					<div class="clear"></div>
+				</form>
+			</div>
+		</div>
+		<div id="footer">
+			<div class="footerList">
+				<li><a href="#">关于我们</a></li>
+				<li><a href="#">联系我们</a></li>
+				<li><a href="#">投资广告</a></li>
+				<li><a href="#">RSS订阅</a></li>
+
+			</div>
+			<div class="clear"></div>
+			<div class="footerCopyright">
+				<p>&copy;2012-2013&nbsp;ourqu.com,all right reserved.</p>
+			</div>
+		</div>
+	</body>
+</html>
+
